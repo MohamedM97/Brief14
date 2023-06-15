@@ -8,4 +8,4 @@ sudo usermod -aG docker $USER
 sudo systemctl enable docker.service
 sudo systemctl enable containerd.service
 #Creating container
-sudo docker run -d -p 1234 mohamed976/brief14
+sudo docker run -d -p 5005:1234 --name Mohamed mohamed976/brief14

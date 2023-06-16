@@ -1,0 +1,71 @@
+    pipeline {
+    agent any
+    
+    stages {
+        stage('git') {
+            steps {
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/MohamedM97/Brief14']])
+            }
+        }
+        
+        stage('Docker Login') {
+            steps {
+                sh 'docker login -u id dockerhub -p mot de passe'
+            }
+        }
+        
+        stage ('Docker Build') {
+            steps {
+                sh 'cd image && docker build -t mohamed .'
+            }    
+        }
+
+        stage ('Docker Tag') {
+            steps {
+                sh 'docker tag mohamed:latest mohamed976/mohamed:latest'
+            }
+        }
+
+        stage ('Docker Push') {
+            steps {
+                sh 'docker push mohamed976/mohamed:latest '
+            }
+        } 
+        
+        stage('Terraform init') {
+            steps {
+                sh "terraform init"
+            }
+        }
+        
+        stage('Terraform plan') {
+            steps {
+                sh "terraform plan"
+            }
+        }
+        
+        stage('Terraform apply') {
+            steps {
+                sh "terraform apply -auto-approve"
+            }
+        }
+    
+        stage ('Terraform-Init Prod') {
+            steps {
+                sh "cd prod && terraform init"
+            }                
+        }
+
+        stage ('Terraform-Plan Prod') {
+            steps {
+                sh "cd prod && terraform plan"
+            }
+        }
+
+        stage ('Terraform-Apply Prod') {
+            steps {
+                sh "cd prod && terraform apply -auto-approve"
+            }
+        }  
+    }
+}

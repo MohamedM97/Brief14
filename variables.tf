@@ -1,6 +1,6 @@
 variable "subscription_id" {
    description = "Azure subscription"
-   default = "393e3de3-0900-4b72-8f1b-fb3b1d6b97f1"
+   default = ""
 }
 
 variable "client_id" {

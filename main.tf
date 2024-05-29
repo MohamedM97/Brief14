@@ -92,8 +92,8 @@ resource "azurerm_linux_virtual_machine" "Brief14" {
    }
 
    computer_name = "brief14"
-   admin_username = "mohamed"
-   admin_password = "Mohameddu976"
+   admin_username = " "
+   admin_password = " "
    disable_password_authentication = false
 
    os_disk {
